@@ -23,6 +23,12 @@
           "secret": {
             "name": "testsecret2"
           }
+        },
+        {
+          "secret": {
+            "name": "testsecret3"
+          },
+          "destinationDir": "/tmp/"
         }
       ],
       "configMaps": [

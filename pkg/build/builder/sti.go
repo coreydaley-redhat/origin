@@ -118,10 +118,11 @@ func injectSecrets(secrets []buildapiv1.SecretBuildSource) []s2iapi.VolumeSpec {
 }
 
 func makeVolumeSpec(src localObjectBuildSource, mountPath string) s2iapi.VolumeSpec {
-	glog.V(3).Infof("Injecting build source %q into a build into %q", src.LocalObjectRef().Name, filepath.Clean(src.DestinationPath()))
+	destPath := filepath.Dir(src.DestinationPath())
+	glog.V(3).Infof("Injecting build source %q into a build into %q", src.LocalObjectRef().Name, destPath)
 	return s2iapi.VolumeSpec{
 		Source:      filepath.Join(mountPath, src.LocalObjectRef().Name),
-		Destination: src.DestinationPath(),
+		Destination: destPath,
 		Keep:        !src.IsSecret(),
 	}
 }

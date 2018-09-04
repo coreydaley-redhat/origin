@@ -17,6 +17,7 @@ var _ = g.Describe("[Feature:Builds][Slow] can use build secrets", func() {
 		buildSecretBaseDir     = exutil.FixturePath("testdata", "builds", "build-secrets")
 		secretsFixture         = filepath.Join(buildSecretBaseDir, "test-secret.json")
 		secondSecretsFixture   = filepath.Join(buildSecretBaseDir, "test-secret-2.json")
+		thirdSecretsFixture    = filepath.Join(buildSecretBaseDir, "test-secret-3.json")
 		configMapFixture       = filepath.Join(buildSecretBaseDir, "test-configmap.json")
 		secondConfigMapFixture = filepath.Join(buildSecretBaseDir, "test-configmap-2.json")
 		isFixture              = filepath.Join(buildSecretBaseDir, "test-is.json")
@@ -46,6 +47,8 @@ var _ = g.Describe("[Feature:Builds][Slow] can use build secrets", func() {
 				err := oc.Run("create").Args("-f", secretsFixture).Execute()
 				o.Expect(err).NotTo(o.HaveOccurred())
 				err = oc.Run("create").Args("-f", secondSecretsFixture).Execute()
+				o.Expect(err).NotTo(o.HaveOccurred())
+				err = oc.Run("create").Args("-f", thirdSecretsFixture).Execute()
 				o.Expect(err).NotTo(o.HaveOccurred())
 				err = oc.Run("create").Args("-f", configMapFixture).Execute()
 				o.Expect(err).NotTo(o.HaveOccurred())
@@ -79,6 +82,9 @@ var _ = g.Describe("[Feature:Builds][Slow] can use build secrets", func() {
 					"testsecret2/secret1=secret1",
 					"testsecret2/secret2=secret2",
 					"testsecret2/secret3=secret3",
+					"testsecret3/secret1=secret1",
+					"testsecret3/secret2=secret2",
+					"testsecret3/secret3=secret3",
 					"testconfig/foo=bar",
 					"testconfig/red=hat",
 					"testconfig/this=that",

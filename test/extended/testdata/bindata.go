@@ -28,6 +28,7 @@
 // test/extended/testdata/builds/build-secrets/test-is.json
 // test/extended/testdata/builds/build-secrets/test-s2i-build.json
 // test/extended/testdata/builds/build-secrets/test-secret-2.json
+// test/extended/testdata/builds/build-secrets/test-secret-3.json
 // test/extended/testdata/builds/build-secrets/test-secret.json
 // test/extended/testdata/builds/build-timing/Dockerfile
 // test/extended/testdata/builds/build-timing/s2i-binary-dir/.s2i/bin/assemble
@@ -1263,6 +1264,12 @@ var _testExtendedTestdataBuildsBuildSecretsTestS2iBuildJson = []byte(`{
           "secret": {
             "name": "testsecret2"
           }
+        },
+        {
+          "secret": {
+            "name": "testsecret3"
+          },
+          "destinationDir": "/tmp/"
         }
       ],
       "configMaps": [
@@ -1346,6 +1353,37 @@ func testExtendedTestdataBuildsBuildSecretsTestSecret2Json() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "test/extended/testdata/builds/build-secrets/test-secret-2.json", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var _testExtendedTestdataBuildsBuildSecretsTestSecret3Json = []byte(`{
+    "kind": "Secret",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "testsecret3",
+        "creationTimestamp": null
+    },
+    "data": {
+        "secret1": "c2VjcmV0MQo=",
+        "secret2": "c2VjcmV0Mgo=",
+        "secret3": "c2VjcmV0Mwo="
+    },
+    "type": "Opaque"
+}
+`)
+
+func testExtendedTestdataBuildsBuildSecretsTestSecret3JsonBytes() ([]byte, error) {
+	return _testExtendedTestdataBuildsBuildSecretsTestSecret3Json, nil
+}
+
+func testExtendedTestdataBuildsBuildSecretsTestSecret3Json() (*asset, error) {
+	bytes, err := testExtendedTestdataBuildsBuildSecretsTestSecret3JsonBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "test/extended/testdata/builds/build-secrets/test-secret-3.json", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -34291,6 +34329,7 @@ var _bindata = map[string]func() (*asset, error){
 	"test/extended/testdata/builds/build-secrets/test-is.json": testExtendedTestdataBuildsBuildSecretsTestIsJson,
 	"test/extended/testdata/builds/build-secrets/test-s2i-build.json": testExtendedTestdataBuildsBuildSecretsTestS2iBuildJson,
 	"test/extended/testdata/builds/build-secrets/test-secret-2.json": testExtendedTestdataBuildsBuildSecretsTestSecret2Json,
+	"test/extended/testdata/builds/build-secrets/test-secret-3.json": testExtendedTestdataBuildsBuildSecretsTestSecret3Json,
 	"test/extended/testdata/builds/build-secrets/test-secret.json": testExtendedTestdataBuildsBuildSecretsTestSecretJson,
 	"test/extended/testdata/builds/build-timing/Dockerfile": testExtendedTestdataBuildsBuildTimingDockerfile,
 	"test/extended/testdata/builds/build-timing/s2i-binary-dir/.s2i/bin/assemble": testExtendedTestdataBuildsBuildTimingS2iBinaryDirS2iBinAssemble,
@@ -34759,6 +34798,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 						"test-is.json": &bintree{testExtendedTestdataBuildsBuildSecretsTestIsJson, map[string]*bintree{}},
 						"test-s2i-build.json": &bintree{testExtendedTestdataBuildsBuildSecretsTestS2iBuildJson, map[string]*bintree{}},
 						"test-secret-2.json": &bintree{testExtendedTestdataBuildsBuildSecretsTestSecret2Json, map[string]*bintree{}},
+						"test-secret-3.json": &bintree{testExtendedTestdataBuildsBuildSecretsTestSecret3Json, map[string]*bintree{}},
 						"test-secret.json": &bintree{testExtendedTestdataBuildsBuildSecretsTestSecretJson, map[string]*bintree{}},
 					}},
 					"build-timing": &bintree{nil, map[string]*bintree{
